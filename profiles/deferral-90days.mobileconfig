@@ -18,8 +18,6 @@
 
       <!-- Optional (set to your taste) -->
       <key>forceDelayedSoftwareUpdates</key><true/>
-      <key>enforcedSoftwareUpdateMinorOSDeferredInstallDelay</key><integer>30</integer>
-      <key>enforcedSoftwareUpdateNonOSDeferredInstallDelay</key><integer>30</integer>
     </dict>
   </array>
 
