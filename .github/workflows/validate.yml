@@ -1,6 +1,7 @@
 name: Validate & Lint
 
 on:
+  workflow_dispatch:
   pull_request:
     branches: [main]
   push:
@@ -25,13 +26,13 @@ jobs:
         run: |
           echo "Linting shell scripts..."
           brew install shellcheck || true
-          shellcheck scripts/*.sh plugins/*/*.sh
+          shellcheck scripts/*.sh
 
       - name: 🔒 Generate SHA-256 checksums
         run: |
           echo "Generating checksums for installable artifacts..."
           mkdir -p checksums
-          find profiles scripts plugins -type f -name "*.sh" -o -name "*.mobileconfig" | while read -r file; do
+          find profiles scripts -type f \( -name "*.sh" -o -name "*.mobileconfig" \) | while read -r file; do
             shasum -a 256 "$file" >> checksums/SHA256SUMS.txt
           done
           cat checksums/SHA256SUMS.txt
